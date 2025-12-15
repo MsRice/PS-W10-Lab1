@@ -1,4 +1,23 @@
-# React + TypeScript + Vite
+## Table of contents
+
+- [Overview](#overview)
+  - [Scenario](#scenario)
+-[Built with](#built-with)
+  - [React + Typescript + Vite](#react-typescript-vite)
+  - [React Compiler](#react-compiler)
+  - [Expanding the ESLint configuration](#expanding-the-eSLint-configuration)
+- [Author](#author)
+
+
+## Overview
+
+Lab 1 - React Counter with useEffect
+
+### Scenario
+You have been tasked to build an advanced counter application. This project will challenge you to go beyond simple state updates by requiring you to manage multiple state dependencies, implement side effects using the useEffect hook (including proper cleanup), and handle more complex state update logic. The goal is to solidify your understanding of useState and useEffect in a practical context, focusing on how they work together to create interactive and responsive components.
+
+## Built with
+# React TypeScript Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -9,7 +28,7 @@ Currently, two official plugins are available:
 
 ## React Compiler
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
 ## Expanding the ESLint configuration
 
@@ -71,3 +90,11 @@ export default defineConfig([
   },
 ])
 ```
+
+
+
+## Author
+
+Patrice(Rice 🍚) Maxwell 
+([thegrainofrice.com](https://www.thegrainofrice.com/))
+([Linkedin](https://www.linkedin.com/in/patrice-maxwell))
