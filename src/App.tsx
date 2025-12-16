@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import './App.css'
 import PMaxwell_Resume from './assets/Patrice Maxwell.pdf'
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -10,11 +10,17 @@ function App() {
   const [countlog, setCountLog] = useState<number[]>([count])
   const [step , setStep] = useState<number>(1)
   const [modal, setModal] = useState('closed'); 
+  const [issaving , setSaving] = useState(false)
+  const [issaved , setSaved] = useState(false)
 
     const toggleModal = () => {
     setModal((currModal) => (currModal === 'closed' ? 'open' : 'closed'));
   };
+
+
   const increment = () =>{
+    setSaving(true);
+    setSaved(false);
     setCount(prevct => {
       const next = prevct + step;
       console.log(countlog)
@@ -22,15 +28,19 @@ function App() {
       console.log(countlog)
       return next;
     })
-}
-
+   
+    
+  }
+  
   const decrement = () =>{
-     setCount(prevct => {
+    setSaving(true);
+    setSaved(false);
+    setCount(prevct => {
       const next = prevct - step;
       setCountLog(log => [...log, next]);
-    
+      
       return next;
-  })
+    })
 }
   const reset = () =>{
     setCount(0)
@@ -42,10 +52,26 @@ function App() {
     event.preventDefault();
     
   }
+  
   useEffect(() => {
       console.log(countlog)
       localStorage.setItem('count', JSON.stringify(count));
-  },[countlog])
+      
+    const saveTimer = setTimeout(() => {
+      setSaving(false);
+      setSaved(true);
+    }, 1000);
+
+    const resetTimer = setTimeout(() => {
+      setSaved(false);
+    }, 1500);
+
+    return () => {
+      clearTimeout(saveTimer);
+      clearTimeout(resetTimer);
+    };
+  },[countlog ,count])
+
 
 
  useEffect(() => {
@@ -83,7 +109,9 @@ function App() {
           <div className="card">
               <h1>Counter</h1>
               <div>Current Count:{count}</div>
-
+              {issaving  && <div>Saving...</div>}
+              {issaved  && <div>Saved</div>}
+              
               <div>
 
               <button onClick={increment}>+{step}</button>
